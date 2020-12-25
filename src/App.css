@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
-}
+@import-normalize;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f6f7ff;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: 'Inter', sans-serif;
+}
+.main-section {
+  width: 700px;
+  margin: 0 auto;
+}
+.brand {
+  margin: 2em;
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: 'Inter';
+  src: url('https://uploads-ssl.webflow.com/5ea3bbe508815409b2adc81a/5ea3bbe591ec4517da05ba1d_Inter-Medium.woff')
+    format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: auto;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: 'Inter';
+  src: url('https://uploads-ssl.webflow.com/5ea3bbe508815409b2adc81a/5ea3bbe591ec4514f805ba18_Inter-SemiBold.woff')
+    format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: auto;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('https://uploads-ssl.webflow.com/5ea3bbe508815409b2adc81a/5ea3bbe591ec4583a305ba38_Inter-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('https://uploads-ssl.webflow.com/5ea3bbe508815409b2adc81a/5ea3bbe591ec45777305ba34_Inter-Bold.woff')
+    format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: auto;
 }
