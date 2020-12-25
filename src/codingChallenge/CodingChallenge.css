@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  width: 502px;
+  width: 702px;
   flex-direction: column;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .viewport {
-  width: 500px;
+  width: 700px;
   overflow-y: auto;
   background: #fff;
   border: 1px solid rgb(141, 155, 161);
@@ -76,7 +76,7 @@
 }
 
 .item-content {
-  flex: 0 1 330px;
+  flex: 1 1 auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

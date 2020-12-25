@@ -6,6 +6,8 @@ body {
 .header {
   display: flex;
   font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  padding: 3em;
 }
 .main-section {
   width: 700px;

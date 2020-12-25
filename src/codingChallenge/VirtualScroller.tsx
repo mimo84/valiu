@@ -63,10 +63,7 @@ const VirtualScroller: React.FC<VirtualScrollerProps> = ({
       totalHeight - paddingHeight.top - viewData.length * itemHeight,
       0
     );
-    console.log(
-      'run scroller',
-      scrollElement.current?.scrollTop || scrollPosition
-    );
+
     setScrollPosition(scrollElement.current?.scrollTop || scrollPosition);
 
     setPaddingHeight({
