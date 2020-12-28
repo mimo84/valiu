@@ -13,7 +13,6 @@ import {
   INITIAL_LIST_EVENT,
 } from './common/contants';
 
-import { clearInterval } from 'timers';
 import index from './routes/routes';
 
 export interface ITag {
@@ -31,7 +30,7 @@ app.use(index);
 const server = http.createServer(app);
 const io = anySocketIo(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: '*',
     methods: ['GET', 'POST'],
   },
 });

@@ -19,6 +19,8 @@ public/css/main.css
 # Coverage reports
 coverage
 
+build/
+
 # API keys and secrets
 .env
 
@@ -39,3 +41,8 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
+git remote add heroku-client https://git.heroku.com/mimo-valiu-client.git
+git remote add heroku-server https://git.heroku.com/mimo-valiu-server.git
+
+git subtree push --prefix server heroku-server main
+git subtree push --prefix client heroku-client main
