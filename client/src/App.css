@@ -10,7 +10,7 @@ body {
   padding: 3em;
 }
 .main-section {
-  width: 700px;
+  max-width: 700px;
   margin: 0 auto;
 }
 .brand {

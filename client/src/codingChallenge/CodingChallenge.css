@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  width: 702px;
+  max-width: 702px;
   flex-direction: column;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .viewport {
-  width: 700px;
+  max-width: 700px;
   overflow-y: auto;
   background: #fff;
   border: 1px solid rgb(141, 155, 161);
