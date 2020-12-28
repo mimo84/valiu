@@ -11,7 +11,7 @@ import {
 } from '../common/contants';
 import { ITag } from './CodingChallenge';
 
-const SOCKET_SERVER_URL = 'http://localhost:4001';
+const SOCKET_SERVER_URL = 'https://mimo-valiu-server.herokuapp.com/';
 
 const useSocket = () => {
   const [tags, setTags] = useState<ITag[]>([]);
