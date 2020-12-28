@@ -1,6 +1,7 @@
 # Valiu Coding Challenge
 
 I am creating this repo to apply for a job position as Full Stack Software Engineer at Valiu.
+Demo: [https://mimo84.github.io/valiu/index.html]
 
 ## How to run this app:
 
