@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon",
-    "build": "rm -rf ./build && tsc",
-    "start": "npm run build && node build/server.js"
+    "build": "rm -rf ./build && npm run tsc",
+    "start": "npm run build && node build/server.js",
+    "tsc": "tsc"
   },
   "engines": {
     "node": "15.x",
