@@ -2,7 +2,7 @@ import React, { KeyboardEvent, useState } from 'react';
 import VirtualScroller from './VirtualScroller';
 import { v4 as uuid } from 'uuid';
 import faker from 'faker';
-import { useEffect } from 'react';
+import useSocket from './useSocket';
 
 faker.locale = 'pt_BR';
 
@@ -15,16 +15,12 @@ export interface ITag {
 const rndNumber = () => Math.floor(Math.random() * 255);
 const randomColor = () =>
   `rgba(${rndNumber()},${rndNumber()}, ${rndNumber()} )`;
-const initialTags: ITag[] = Array.from({ length: 10e4 }).map((_, i) => ({
-  color: randomColor(),
-  content: faker.random.words(),
-  id: uuid(),
-}));
 
 const CodingChallenge: React.FC = () => {
-  const actionDelete = (index: string) => {
-    const nuTags = tags.filter((t) => t.id !== index);
-    setTags(nuTags);
+  const { tags, addTag, editTag, deleteTag } = useSocket();
+
+  const actionDelete = (id: string) => {
+    deleteTag(id);
   };
 
   const actionEdit = (index: string) => {
@@ -41,12 +37,17 @@ const CodingChallenge: React.FC = () => {
   const onEditInputChange = (e: any) => {
     setEdit(e.currentTarget.value);
   };
+
   const tagAction = () => {
-    let nuTags;
     if (editTarget !== undefined) {
-      nuTags = tags.map((t) => {
-        return t.id === editTarget?.id ? { ...t, content: edit } : t;
+      const editedTag = tags.find((t) => {
+        return t.id === editTarget?.id;
       });
+
+      if (editedTag) {
+        editTag({ ...editedTag, content: edit });
+      }
+
       setScrollPosition(scrollPosition);
     } else {
       const brandNewTag = {
@@ -54,23 +55,17 @@ const CodingChallenge: React.FC = () => {
         content: edit,
         id: uuid(),
       };
-      nuTags = [brandNewTag].concat(tags);
+      addTag(brandNewTag);
       setScrollPosition(0);
     }
 
     setEdit('');
     setEditTarget(undefined);
-    setTags(nuTags);
   };
 
-  const [tags, setTags] = useState<ITag[]>(initialTags);
   const [edit, setEdit] = useState('');
   const [editTarget, setEditTarget] = useState<ITag | undefined>(undefined);
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  useEffect(() => {
-    setTags(tags);
-  }, [tags]);
 
   const RowTemplate = (v: ITag, i: number) => {
     return (
@@ -99,6 +94,7 @@ const CodingChallenge: React.FC = () => {
   return (
     <>
       <h2>Coding Challenge! (rendering: {tags.length})</h2>
+
       <div className="container">
         <div className="tag-list">Etiquetas</div>
 
