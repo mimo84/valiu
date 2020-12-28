@@ -1,10 +1,8 @@
 import React, { KeyboardEvent, useState } from 'react';
 import VirtualScroller from './VirtualScroller';
 import { v4 as uuid } from 'uuid';
-import faker from 'faker';
 import useSocket from './useSocket';
-
-faker.locale = 'pt_BR';
+import Loader from '../loader/Loader';
 
 export interface ITag {
   color: string;
@@ -17,7 +15,7 @@ const randomColor = () =>
   `rgba(${rndNumber()},${rndNumber()}, ${rndNumber()} )`;
 
 const CodingChallenge: React.FC = () => {
-  const { tags, addTag, editTag, deleteTag } = useSocket();
+  const { tags, addTag, editTag, deleteTag, loading, key } = useSocket();
 
   const actionDelete = (id: string) => {
     deleteTag(id);
@@ -47,7 +45,6 @@ const CodingChallenge: React.FC = () => {
       if (editedTag) {
         editTag({ ...editedTag, content: edit });
       }
-
       setScrollPosition(scrollPosition);
     } else {
       const brandNewTag = {
@@ -96,25 +93,28 @@ const CodingChallenge: React.FC = () => {
       <h2>Coding Challenge! (rendering: {tags.length})</h2>
 
       <div className="container">
-        <div className="tag-list">Etiquetas</div>
+        <div className="tag-list">Etiquetas {loading && <Loader />}</div>
+        {loading === false && (
+          <>
+            <input
+              type="text"
+              className="input"
+              value={edit}
+              autoFocus
+              onChange={onEditInputChange}
+              onKeyDown={onInputEnter}
+              placeholder="Añadir etiqueta"
+            />
 
-        <input
-          type="text"
-          className="input"
-          value={edit}
-          autoFocus
-          onChange={onEditInputChange}
-          onKeyDown={onInputEnter}
-          placeholder="Añadir etiqueta"
-        />
-
-        <VirtualScroller
-          scrollPosition={scrollPosition}
-          setScrollPosition={setScrollPosition}
-          key={tags.length}
-          data={tags}
-          row={RowTemplate}
-        />
+            <VirtualScroller
+              scrollPosition={scrollPosition}
+              setScrollPosition={setScrollPosition}
+              key={key}
+              data={tags}
+              row={RowTemplate}
+            />
+          </>
+        )}
       </div>
     </>
   );
