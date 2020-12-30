@@ -77,7 +77,8 @@ const VirtualScroller: React.FC<VirtualScrollerProps> = ({
 
   useEffect(() => {
     runScroller(scrollPosition);
-    scrollElement.current?.scrollTo(0, scrollPosition);
+    scrollElement.current?.scrollTo &&
+      scrollElement.current?.scrollTo(0, scrollPosition);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -97,9 +98,15 @@ const VirtualScroller: React.FC<VirtualScrollerProps> = ({
       style={{ height: viewportHeight }}
       onScroll={(e) => runScroller(e.currentTarget.scrollTop)}
     >
-      <div style={{ height: paddingHeight.top }}></div>
+      <div
+        data-testid="top-padding-element"
+        style={{ height: paddingHeight.top }}
+      ></div>
       {paddingHeight.viewData.map(row)}
-      <div style={{ height: paddingHeight.bottom }}></div>
+      <div
+        data-testid="bottom-padding-element"
+        style={{ height: paddingHeight.bottom }}
+      ></div>
     </div>
   );
 };

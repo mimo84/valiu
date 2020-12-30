@@ -3,16 +3,13 @@ import VirtualScroller from './VirtualScroller';
 import { v4 as uuid } from 'uuid';
 import useSocket from './useSocket';
 import Loader from '../loader/Loader';
+import { randomColor } from '../common/utils';
 
 export interface ITag {
   color: string;
   content: string;
   id: string;
 }
-
-const rndNumber = () => Math.floor(Math.random() * 255);
-const randomColor = () =>
-  `rgba(${rndNumber()},${rndNumber()}, ${rndNumber()} )`;
 
 const CodingChallenge: React.FC = () => {
   const { tags, addTag, editTag, deleteTag, loading, key } = useSocket();
@@ -90,7 +87,7 @@ const CodingChallenge: React.FC = () => {
   };
   return (
     <>
-      <h2>Coding Challenge! (rendering: {tags.length})</h2>
+      <h2>Coding Challenge!</h2>
 
       <div className="container">
         <div className="tag-list">Etiquetas {loading && <Loader />}</div>
@@ -98,6 +95,7 @@ const CodingChallenge: React.FC = () => {
           <>
             <input
               type="text"
+              data-testid="input-etiqueta"
               className="input"
               value={edit}
               autoFocus
