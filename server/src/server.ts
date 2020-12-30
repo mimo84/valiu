@@ -1,8 +1,6 @@
 import * as express from 'express';
 import * as http from 'http';
 import * as socketIo from 'socket.io';
-import { v4 as uuid } from 'uuid';
-import * as faker from 'faker';
 import {
   EMIT_NEW_TAG_EVENT,
   RECEIVE_NEW_TAG_EVENT,
@@ -14,6 +12,7 @@ import {
 } from './common/contants';
 
 import index from './routes/routes';
+import { generateData } from './common/utils';
 
 export interface ITag {
   color: string;
@@ -35,14 +34,7 @@ const io = anySocketIo(server, {
   },
 });
 
-const rndNumber = () => Math.floor(Math.random() * 255);
-const randomColor = () =>
-  `rgba(${rndNumber()},${rndNumber()}, ${rndNumber()} )`;
-let tagList: ITag[] = Array.from({ length: 10e4 }).map((_, i) => ({
-  color: randomColor(),
-  content: faker.random.words(),
-  id: uuid(),
-}));
+let tagList: ITag[] = generateData(10e4);
 
 io.on('connection', (socket: socketIo.Socket) => {
   socket.emit(INITIAL_LIST_EVENT, tagList);
